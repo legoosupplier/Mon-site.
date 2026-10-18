@@ -222,95 +222,158 @@ pre.recap{white-space:pre-wrap;text-align:left;background:rgba(255,255,255,.05);
 <footer id="foot"></footer>
 
 <script>
-/* =====================================================
-   ✏️  TOUT SE MODIFIE ICI — écris et change ce que tu veux
-   ===================================================== */
+/* ============================================================
+   ✏️  RÉGLAGES DE TON SITE — c'est le SEUL fichier à modifier
+   ============================================================
+
+   COMMENT MODIFIER (simple) :
+   • Change uniquement le texte qui est entre des guillemets "comme ça".
+   • Ne supprime jamais les guillemets " " ni les virgules , à la fin des lignes.
+   • Ce qui est après // est juste une explication, tu peux l'ignorer.
+   • Pour AJOUTER un élément (produit, avis, carte...) : copie une ligne
+     { ... }, colle-la juste en dessous et change le texte.
+   • Pour SUPPRIMER un élément : efface toute sa ligne { ... },
+   • Les photos : envoie-les sur GitHub (Add file → Upload files), puis écris
+     leur nom ici, par exemple "accueil.jpg".
+
+   Si le site devient vide ou affiche une erreur en rouge, c'est qu'une
+   virgule ou un guillemet a été effacé : regarde la ligne que tu viens de changer.
+   ============================================================ */
+
 const SITE = {
-  marque: "TON NOM",
 
-  /* --- Couleurs (change-les, tout le site suit) --- */
+  /* ──────────────────────────────────────────────
+     1) À REMPLIR EN PREMIER (très important)
+     ────────────────────────────────────────────── */
+  marque: "TON NOM",            // Le nom affiché tout en haut à gauche et dans l'onglet
+  paypalMe: "",                 // Ton pseudo PayPal.me. Si ton lien est paypal.me/clement, écris "clement".
+                                // Sans ça, le bouton « Valider et payer » n'ouvre pas PayPal.
+  emailCommande: "",            // (facultatif) ton e-mail, pour que le client t'envoie sa commande
+  devise: "€",                  // Le symbole de la monnaie
+  messagePaiement: "Paiement via PayPal, option « Biens et services » (protection de l'acheteur incluse).",
+                                // Le message affiché sous le formulaire de commande
+
+
+  /* ──────────────────────────────────────────────
+     2) COULEURS (tout le site change d'un coup)
+     Écris des codes couleur comme "#ff0000" (rouge).
+     Astuce : cherche « color picker » sur Google pour trouver un code.
+     ────────────────────────────────────────────── */
   couleurs: {
-    fond:    "#0e0c1b",   // fond de la page
-    carte:   "#1a1730",   // fond des cartes
-    texte:   "#f6f3ff",
-    discret: "#a29fc0",   // petits textes gris
-    accent:  "#ff6a3d",   // couleur 1 du dégradé
-    accent2: "#ffcf3f",   // couleur 2 du dégradé
-    surAccent: "#1b0f10"  // couleur du texte sur les boutons colorés
+    fond:      "#0e0c1b",       // Couleur du fond de toute la page
+    carte:     "#1a1730",       // Couleur du fond des cartes et des produits
+    texte:     "#f6f3ff",       // Couleur du texte principal
+    discret:   "#a29fc0",       // Couleur des petits textes gris
+    accent:    "#ff6a3d",       // Couleur 1 des boutons (début du dégradé)
+    accent2:   "#ffcf3f",       // Couleur 2 des boutons (fin du dégradé)
+    surAccent: "#1b0f10"        // Couleur du texte écrit sur les boutons colorés
   },
 
-  /* --- Accueil (en haut) --- */
+
+  /* ──────────────────────────────────────────────
+     3) HAUT DE PAGE (la première chose qu'on voit)
+     ────────────────────────────────────────────── */
   hero: {
-    image: "",                       // TA photo : nom du fichier (ex: "photos/accueil.jpg") ou lien
-    ligne1: "Ta première ligne,",
-    ligne2: "ta ligne en couleur,",
-    ligne3: "ta dernière ligne.",
-    badge1: { titre: "⚡ Titre 1", texte: "Sous-texte 1" },
-    badge2: { titre: "📦 Titre 2", texte: "Sous-texte 2" },
-    personnesEnLigne: "",            // vrai chiffre seulement, sinon laisse vide
-    note: "X,X/5",                   // remplace par ta vraie note, ex: "4,8/5"
-    nombreAvis: "XX avis",           // remplace par ton vrai nombre d'avis, ex: "12 avis"
-    boutonCatalogue: "Afficher le catalogue"   // ce bouton ouvre le catalogue ici, sur la même page
+    image: "",                  // TA photo au milieu du carré en couleur. Ex: "accueil.jpg". Vide = cadre « Ta photo ici ».
+    ligne1: "Ta première ligne,",     // Gros titre, ligne 1 (en blanc)
+    ligne2: "ta ligne en couleur,",   // Gros titre, ligne 2 (en couleur)
+    ligne3: "ta dernière ligne.",     // Gros titre, ligne 3 (en blanc)
+
+    badge1: { titre: "⚡ Titre 1", texte: "Sous-texte 1" },   // Petite bulle en haut à gauche de la photo
+    badge2: { titre: "📦 Titre 2", texte: "Sous-texte 2" },   // Petite bulle à droite de la photo
+
+    personnesEnLigne: "",       // Ligne sous le titre (ex: "5 personnes consultent cette page"). Vide = cachée. Vrai chiffre seulement.
+    note: "X,X/5",              // Ta VRAIE note, ex: "4,8/5". Les étoiles s'adaptent toutes seules.
+    nombreAvis: "XX avis",      // Ton VRAI nombre d'avis, ex: "12 avis"
+
+    boutonCatalogue: "Afficher le catalogue"   // Le texte du gros bouton qui ouvre le catalogue
   },
 
-  /* --- Bandeau qui défile --- */
+
+  /* ──────────────────────────────────────────────
+     4) BANDEAU NOIR QUI DÉFILE (sous le haut de page)
+     Un texte par guillemets, séparés par des virgules. Tu peux mettre un emoji au début.
+     ────────────────────────────────────────────── */
   bandeau: ["⚡ Ton argument 1", "📦 Ton argument 2", "🔒 Ton argument 3", "✨ Ton argument 4"],
 
-  /* --- Bloc cartes avec flèches --- */
-  titre1: "Tout ce dont tu as besoin",
-  soustitre1: "Ton sous-titre ici.",
+
+  /* ──────────────────────────────────────────────
+     5) LES CARTES AVEC FLÈCHES
+     ────────────────────────────────────────────── */
+  titre1: "Tout ce dont tu as besoin",    // Titre au-dessus des cartes
+  soustitre1: "Ton sous-titre ici.",      // Petit texte sous le titre
   cartes: [
+    // icone = un emoji, titre = le titre de la carte, texte = la phrase en dessous
     { icone: "🏆", titre: "Ton titre 1", texte: "Ton texte 1." },
     { icone: "📦", titre: "Ton titre 2", texte: "Ton texte 2." },
     { icone: "⚡", titre: "Ton titre 3", texte: "Ton texte 3." }
+    // pour en ajouter : copie une ligne, mets une virgule à la fin de celle d'avant
   ],
 
-  /* --- Tableau comparatif --- */
-  titre2: "Pourquoi nous ?",
-  soustitre2: "Ton sous-titre ici.",
-  colNous: "Nous",
-  colAutre: "Autre",
+
+  /* ──────────────────────────────────────────────
+     6) LE TABLEAU « POURQUOI NOUS ? »
+     nous: true = ✓ pour toi  |  false = ✕ pour toi
+     autre: true = ✓ pour les autres  |  false = ✕ pour les autres
+     ────────────────────────────────────────────── */
+  titre2: "Pourquoi nous ?",              // Titre du tableau
+  soustitre2: "Ton sous-titre ici.",      // Petit texte sous le titre
+  colNous: "Nous",                        // Nom de ta colonne
+  colAutre: "Autre",                      // Nom de la colonne des concurrents
   lignes: [
-    { critere: "Bas prix",      nous: true, autre: false },
-    { critere: "Qualité",       nous: true, autre: true  },
-    { critere: "Ton critère 3", nous: true, autre: false },
-    { critere: "Stock illimité", nous: false, autre: true }
+    { critere: "Bas prix",       nous: true,  autre: false },
+    { critere: "Qualité",        nous: true,  autre: true  },
+    { critere: "Ton critère 3",  nous: true,  autre: false },
+    { critere: "Stock illimité", nous: false, autre: true  }
   ],
 
-  /* --- Catalogue (s'ouvre quand on clique sur le bouton) --- */
-  titre4: "Le catalogue",
-  soustitre4: "Ton sous-titre ici.",
+
+  /* ──────────────────────────────────────────────
+     7) LE CATALOGUE (s'ouvre quand on appuie sur le gros bouton)
+     prix = juste un nombre, sans le symbole € (ex: 12.5 pour 12,50 €)
+     image = nom de ta photo (ex: "produit1.jpg"), vide = petite brique 🧱
+     ────────────────────────────────────────────── */
+  titre4: "Le catalogue",                 // Titre en haut du catalogue
+  soustitre4: "Ton sous-titre ici.",      // Petit texte sous le titre
   produits: [
-    { nom: "Produit 1", prix: 10, image: "" },   // prix = un nombre (ex: 12.5) — image : "photos/produit1.jpg"
+    { nom: "Produit 1", prix: 10, image: "" },
     { nom: "Produit 2", prix: 15, image: "" },
     { nom: "Produit 3", prix: 20, image: "" },
     { nom: "Produit 4", prix: 25, image: "" }
-    // ajoute-en autant que tu veux (copie une ligne)
+    // pour en ajouter : copie une ligne, mets une virgule à la fin de celle d'avant
   ],
 
-  /* --- Panier & paiement --- */
-  devise: "€",
-  paypalMe: "",          // ton pseudo PayPal.me (ex: "tonpseudo") → affiche un bouton "Payer avec PayPal" avec le bon montant
-  emailCommande: "",     // ton e-mail : le client peut t'envoyer sa commande en un clic
-  messagePaiement: "Paiement via PayPal, option « Biens et services » (protection de l'acheteur incluse).",
 
-  /* --- Avis clients (METS DE VRAIS AVIS) --- */
-  titre3: "Ce que disent nos clients",
-  soustitre3: "Ton sous-titre ici.",
+  /* ──────────────────────────────────────────────
+     8) LES AVIS CLIENTS (mets de VRAIS avis)
+     note = de 1 à 5
+     verifie: true seulement si tu as vraiment vérifié que la personne a acheté
+     image = vraie photo envoyée par le client (ex: "avis1.jpg"), vide = pas de photo
+     ────────────────────────────────────────────── */
+  titre3: "Ce que disent nos clients",    // Titre de la section avis
+  soustitre3: "Ton sous-titre ici.",      // Petit texte sous le titre
   avis: [
     {
       nom: "Prénom du client",
       note: 5,
-      verifie: false,   // true seulement si tu as vraiment vérifié l'achat
+      verifie: false,
       texte: "Colle ici le vrai message du client.",
-      image: ""         // vraie photo (ex: "photos/avis1.jpg"), sinon vide
+      image: ""
     }
+    // pour en ajouter un : copie tout le bloc { ... }, mets une virgule après le }
+    // du bloc précédent, et change le texte
   ],
 
-  /* --- Bas de page --- */
+
+  /* ──────────────────────────────────────────────
+     9) BAS DE PAGE
+     ────────────────────────────────────────────── */
   piedDePage: "© 2026 TON NOM — Tous droits réservés"
 };
-/* ===================================================== */
+
+</script>
+<script>
+
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -503,4 +566,3 @@ if ("IntersectionObserver" in window) {
 </script>
 </body>
 </html>
-
